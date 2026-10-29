@@ -28,9 +28,9 @@ public  class Calculator {
     public int multiply(int a, int b){
         return a*b;
     }
-    public int divide(int a, int b) throws IllegalArgumentException {
+    public double divide(int a, int b) throws IllegalArgumentException {
         if(b==0){throw new IllegalArgumentException("Division by zero");}
-        return a/b;
+        return (double)a/b;
     }
 
 
