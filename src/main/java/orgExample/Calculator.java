@@ -16,6 +16,9 @@ public  class Calculator {
     boolean isEven(int n){
         return n%2==0;
     }
+    public int minus(int a,int b){
+        return a-b;
+    }
     public int add(int a,int b){
         return a+b;
     }
