@@ -14,7 +14,7 @@ double divide(int a, int b) — если b == 0, выброси IllegalArgumentE
 public  class Calculator {
 
     boolean isEven(int n){
-        return n%2==0;
+        return n%2==0;//isEven
     }
     public int minus(int a,int b){
         return a-b;
