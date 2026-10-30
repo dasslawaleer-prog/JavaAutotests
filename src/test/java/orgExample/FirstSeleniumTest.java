@@ -27,34 +27,27 @@ public class FirstSeleniumTest {
 
         // 3. Открываем сайт
         driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
     }
 
     @Test
     void testLogin() {
-//        // 4. Находим поле "Username" по ID и вводим текст
-//        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-//
-//        // 5. Находим поле "Password" по ID и вводим текст
-//        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-//
-//        // 6. Находим кнопку "Login" по ID и кликаем
-//        driver.findElement(By.id("login-button")).click();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
-        // 7. Делаем проверку (Assert).
-        // Проверяем, что после входа в заголовке страницы появилась надпись "Products"
-        String actualTitle = driver.findElement(By.className("title")).getText();
+        InventoryPage inventory = new InventoryPage(driver);
+        String actualTitle = inventory.getTitleText();
         assertEquals("Products", actualTitle, "Заголовок не совпадает!");
     }
 
     //Задача 2
     @Test
     void cartAdd(){
-        driver.findElement(By.cssSelector("[data-test=\"add-to-cart-sauce-labs-backpack\"]")).click();
-        String actualCount = driver.findElement(By.className("shopping_cart_badge")).getText();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("standard_user","secret_sauce");
+        InventoryPage inventory = new InventoryPage(driver);
+        inventory.addBackpackToCart();
+        String actualCount = inventory.getCartCount();
         assertEquals("1", actualCount);
     }
 
@@ -75,7 +68,8 @@ error-message-container или просто найди по тексту //h3[co
     void testLoginWithWrongPassword() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_userMistace", "secret_sauceMistace");
-        String actualText = driver.findElement(By.cssSelector("h3[data-test='error']")).getText();
+        InventoryPage inventory = new InventoryPage(driver);
+        String actualText = inventory.getTextFromMistake();
         System.out.println(actualText);
         assertEquals("Epic sadface: Username and password do not match any user in this service", actualText,
                 "Mistake in mistake");
