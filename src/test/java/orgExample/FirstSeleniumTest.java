@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FirstSeleniumTest {
     WebDriver driver;
-
+    WebDriverWait wait;
     @BeforeEach
     void setUp() throws InterruptedException {
         // 1. WebDriverManager сам скачает нужный драйвер для Chrome
@@ -24,7 +24,7 @@ public class FirstSeleniumTest {
 
         // 2. Создаем экземпляр браузера
         driver = new ChromeDriver();
-
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // 3. Открываем сайт
         driver.get("https://www.saucedemo.com/");
     }
@@ -33,7 +33,6 @@ public class FirstSeleniumTest {
     void testLogin() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
         InventoryPage inventory = new InventoryPage(driver);
         String actualTitle = inventory.getTitleText();
@@ -45,31 +44,20 @@ public class FirstSeleniumTest {
     void cartAdd(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user","secret_sauce");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
         InventoryPage inventory = new InventoryPage(driver);
         inventory.addBackpackToCart();
         String actualCount = inventory.getCartCount();
         assertEquals("1", actualCount);
     }
 
-    /*
-    Задача 1. Тест на неверный логин
-
-Создай новый тест-метод testLoginWithWrongPassword.
-
-Введи логин standard_user, а пароль wrong_password.
-Нажми кнопку Login.
-Проверь (assertEquals), что появилась ошибка с текстом:
-"Epic sadface: Username and password do not match any user in this service".
-Подсказка: ошибка выводится в элементе с тегом h3 и классом
-error-message-container или просто найди по тексту //h3[contains(text(),
-'Epic sadface')]. Посмотри в браузере через F12, как устроен элемент.
-     */
     @Test
     void testLoginWithWrongPassword() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_userMistace", "secret_sauceMistace");
+        loginPage.login("standard_user", "wrong_password");
         InventoryPage inventory = new InventoryPage(driver);
-        String actualText = inventory.getTextFromMistake();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3[data-test='error']")));
+        String actualText = loginPage.getTextFromMistake();
         System.out.println(actualText);
         assertEquals("Epic sadface: Username and password do not match any user in this service", actualText,
                 "Mistake in mistake");

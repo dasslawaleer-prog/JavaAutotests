@@ -25,7 +25,7 @@ public class InventoryPage {
     private By title = By.className("title");
     private By addBackpage = By.cssSelector("[data-test='add-to-cart-sauce-labs-backpack']");
     private By itemCount = By.className("shopping_cart_badge");
-    private By loginMistake = By.cssSelector("h3[data-test='error']");
+
     public String getTitleText(){
        return driver.findElement(title).getText();
     }
@@ -35,7 +35,5 @@ public class InventoryPage {
     public String getCartCount(){
         return driver.findElement(itemCount).getText();
     }
-    public String getTextFromMistake (){
-       return driver.findElement(loginMistake).getText();
-    }
+
 }
