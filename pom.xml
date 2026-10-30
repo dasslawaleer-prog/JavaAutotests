@@ -20,5 +20,18 @@
             <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- Selenium WebDriver -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.14.1</version> <!-- версия может быть новее -->
+        </dependency>
+
+        <!-- WebDriverManager - для автоматической загрузки драйверов браузера -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.1.0</version>
+        </dependency>
     </dependencies>
 </project>
