@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FirstSeleniumTest {
     WebDriver driver;
-    WebDriverWait wait;
+    //WebDriverWait wait;
     @BeforeEach
     void setUp() throws InterruptedException {
         // 1. WebDriverManager сам скачает нужный драйвер для Chrome
@@ -24,43 +24,57 @@ public class FirstSeleniumTest {
 
         // 2. Создаем экземпляр браузера
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // 3. Открываем сайт
         driver.get("https://www.saucedemo.com/");
     }
 
     @Test
     void testLogin() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "secret_sauce");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
-        InventoryPage inventory = new InventoryPage(driver);
-        String actualTitle = inventory.getTitleText();
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.login("standard_user", "secret_sauce");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
+//        InventoryPage inventory = new InventoryPage(driver);
+//        String actualTitle = inventory.getTitleText();
+//        assertEquals("Products", actualTitle, "Заголовок не совпадает!");
+        String actualTitle = new LoginPage(driver)
+                .login("standard_user","secret_sauce")
+                .getTitleText();
         assertEquals("Products", actualTitle, "Заголовок не совпадает!");
     }
 
     //Задача 2
     @Test
     void cartAdd(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user","secret_sauce");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
-        InventoryPage inventory = new InventoryPage(driver);
-        inventory.addBackpackToCart();
-        String actualCount = inventory.getCartCount();
-        assertEquals("1", actualCount);
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.login("standard_user","secret_sauce");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
+//        InventoryPage inventory = new InventoryPage(driver);
+//        inventory.addBackpackToCart();
+//        String actualCount = inventory.getCartCount();
+//        assertEquals("1", actualCount);
+        String actualCount = new LoginPage(driver)
+                .login("standard_user","secret_sauce" )
+                .addBackpackToCart()
+                .getCartCount();
+        assertEquals("1",actualCount);
     }
 
     @Test
     void testLoginWithWrongPassword() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "wrong_password");
-        InventoryPage inventory = new InventoryPage(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3[data-test='error']")));
-        String actualText = loginPage.getTextFromMistake();
-        System.out.println(actualText);
-        assertEquals("Epic sadface: Username and password do not match any user in this service", actualText,
-                "Mistake in mistake");
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.login("standard_user", "wrong_password");
+//        InventoryPage inventory = new InventoryPage(driver);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3[data-test='error']")));
+//        String actualText = loginPage.getTextFromMistake();
+//        System.out.println(actualText);
+//        assertEquals("Epic sadface: Username and password do not match any user in this service", actualText,
+//                "Mistake in mistake");
+        String mistakeText = new LoginPage(driver)
+                .login("standard_user", "wrong_password")
+                .getTextFromMistake();
+        assertEquals("Epic sadface: Username and password do not match any user in this service",
+                mistakeText,"Mistake in mistake");
     }
 
     @AfterEach
