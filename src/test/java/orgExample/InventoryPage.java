@@ -46,7 +46,7 @@ public class InventoryPage {
     }
 
     public String getCartCount() {
-        wait.until(ExpectedCondi)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(itemCount));
         return driver.findElement(itemCount).getText();
     }
 
