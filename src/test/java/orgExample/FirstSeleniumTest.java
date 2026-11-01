@@ -14,23 +14,25 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FirstSeleniumTest {
-    WebDriver driver;
+public class FirstSeleniumTest extends BaseTest{
+    //WebDriver driver;
     //WebDriverWait wait;
-    @BeforeEach
-    void setUp() throws InterruptedException {
-        // 1. WebDriverManager сам скачает нужный драйвер для Chrome
-        WebDriverManager.chromedriver().setup();
+//    @BeforeEach
+//    void setUp() throws InterruptedException {
+//        // 1. WebDriverManager сам скачает нужный драйвер для Chrome
+//        WebDriverManager.chromedriver().setup();
+//
+//        // 2. Создаем экземпляр браузера
+//        driver = new ChromeDriver();
+//        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        // 3. Открываем сайт
+//        driver.get("https://www.saucedemo.com/");
+//    }
 
-        // 2. Создаем экземпляр браузера
-        driver = new ChromeDriver();
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // 3. Открываем сайт
-        driver.get("https://www.saucedemo.com/");
-    }
 
     @Test
     void testLogin() {
+        driver.get("https://www.saucedemo.com/");
 //        LoginPage loginPage = new LoginPage(driver);
 //        loginPage.login("standard_user", "secret_sauce");
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
@@ -46,6 +48,7 @@ public class FirstSeleniumTest {
     //Задача 2
     @Test
     void cartAdd(){
+        driver.get("https://www.saucedemo.com/");
 //        LoginPage loginPage = new LoginPage(driver);
 //        loginPage.login("standard_user","secret_sauce");
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
@@ -62,6 +65,7 @@ public class FirstSeleniumTest {
 
     @Test
     void testLoginWithWrongPassword() {
+        driver.get("https://www.saucedemo.com/");
 //        LoginPage loginPage = new LoginPage(driver);
 //        loginPage.login("standard_user", "wrong_password");
 //        InventoryPage inventory = new InventoryPage(driver);
@@ -77,11 +81,10 @@ public class FirstSeleniumTest {
                 mistakeText,"Mistake in mistake");
     }
 
-    @AfterEach
-    void tearDown() {
-        // 8. Закрываем браузер после каждого теста
-        if (driver != null) {
-            driver.quit();
-        }
+//    @AfterEach
+//    void tearDown() {
+//        // 8. Закрываем браузер после каждого теста
+//        if (driver != null) {
+//            driver.quit();
+//        }
     }
-}

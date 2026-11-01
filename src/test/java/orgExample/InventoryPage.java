@@ -40,6 +40,7 @@ public class InventoryPage {
     }
 
     public InventoryPage addBackpackToCart() {
+        wait=new WebDriverWait(driver,Duration.ofSeconds(5) );
         wait.until(ExpectedConditions.visibilityOfElementLocated(addBackpage));
         driver.findElement(addBackpage).click();
         return this;

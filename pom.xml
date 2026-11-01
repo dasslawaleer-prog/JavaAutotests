@@ -24,14 +24,14 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.14.1</version> <!-- версия может быть новее -->
+            <version>4.25.0</version> <!-- версия может быть новее -->
         </dependency>
 
         <!-- WebDriverManager - для автоматической загрузки драйверов браузера -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.7.0</version>
+            <version>5.9.2</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
