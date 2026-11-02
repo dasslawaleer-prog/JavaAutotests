@@ -20,7 +20,7 @@ public class LoginPage {
         this.driver=driver;
     }
     public InventoryPage login(String username, String password){
-      wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+     // wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
         driver.findElement(usernameField).sendKeys(username);
         driver.findElement(passwordField).sendKeys(password);
