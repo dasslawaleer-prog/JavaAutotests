@@ -26,9 +26,6 @@ testIsEvenFalse — проверяет, что isEven(5) это false (испо�
  */
 class CalculatorTest {
     private Calculator calc;
-    boolean isEven(int n){
-        return n%2==0;
-    }
 
     @BeforeEach
     void setUp(){
@@ -36,11 +33,11 @@ class CalculatorTest {
     }
     @Test
     void testIsEvenTrue(){
-        assertTrue(isEven(4));
+        assertTrue(calc.isEven(4));
     }
     @Test
     void testIsEvenFalse(){
-        assertFalse(isEven(5));
+        assertFalse(calc.isEven(5));
     }
     @Test
     void testAdd() {

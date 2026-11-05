@@ -14,7 +14,7 @@ double divide(int a, int b) — если b == 0, выброси IllegalArgumentE
 public  class Calculator {
 
     boolean isEven(int n){
-        return n%2==0;
+        return n%2==0;//isEven
     }
     public int minus(int a,int b){
         return a-b;
@@ -28,9 +28,9 @@ public  class Calculator {
     public int multiply(int a, int b){
         return a*b;
     }
-    public int divide(int a, int b) throws IllegalArgumentException {
+    public double divide(int a, int b) throws IllegalArgumentException {
         if(b==0){throw new IllegalArgumentException("Division by zero");}
-        return a/b;
+        return (double)a/b;
     }
 
 
